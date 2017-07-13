@@ -1,0 +1,32 @@
+.searchFood{
+  width:40%;
+  margin: 5% 20px;
+  text-align: center;
+}
+
+.searchFood input{
+  display: block;
+  width:60%;
+  margin-left: 20%;
+}
+
+li{
+  list-style: none;
+}
+
+.listBigBox{
+  width: 40%;
+  height: 150px;
+  border: 1px solid gray;
+  margin: 5% 20px;
+}
+
+.listBigBox img{
+  margin: 10px;
+  height: 130px;
+  float: left;
+}
+.leftSection{
+  text-align: center;
+  padding: 5% 20px;
+}
