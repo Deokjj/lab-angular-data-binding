@@ -1,39 +1,59 @@
-<!-- Search input-->
-<div class="searchFood">
-  <label for="SearchInput"><h4>Search</h4></label>
-  <input type="text" id="searchInput" name="searchInput" value=""
-         [(ngModel)]="searchInput">
+<section class="left">
+
+  <!-- Search input-->
+  <div class="searchFood">
+    <label for="SearchInput"><h4>Search</h4></label>
+    <input type="text" id="searchInput" name="searchInput" value=""
+           [(ngModel)]="searchInput">
+  </div>
+  <!-- Add Form  -->
+  <div class="addForm">
+
+  <button (click)="addFormToggle()" *ngIf="addFormShown === false ">
+    Add New Food</button>
+
+  <form *ngIf="addFormShown" (ngSubmit)="newFoodSubmission(myForm)" #myForm=ngForm novalidate>
+
+    <label for="nameInput">Name</label>
+    <input id="nameInput" name="nameInput"
+    [(ngModel)]="nameInput" value="Example Name" >
+    <br>
+
+    <label for="caloriesInput">Calories</label>
+    <input id="caloriesInput" name="caloriesInput" [(ngModel)]="caloriesInput" value="">
+    <br>
+
+    <label for="imageInput">Image</label>
+    <input id="imageInput" name="imageInput" [(ngModel)]="imageInput" value="">
+    <br>
+
+    <button (click) = "addFormToggle()" type="submit"> Add this </button>
+  </form>
+
 </div>
-<!-- Add Form  -->
-<button (click)="addFormToggle()" *ngIf="addFormShown === false ">
-  Add New Food</button>
-
-<form *ngIf="addFormShown" (ngSubmit)="newFoodSubmission()">
-
-  <label for="nameInput">Name</label>
-  <input id="nameInput" name="nameInput"
-  [(ngModel)]="nameInput" value="Example Name" >
-  <br>
-
-  <label for="caloriesInput">Calories</label>
-  <input id="caloriesInput" name="caloriesInput" [(ngModel)]="caloriesInput" value="">
-  <br>
-
-  <label for="imageInput">Image</label>
-  <input id="imageInput" name="imageInput" [(ngModel)]="imageInput" value="">
-  <br>
-
-  <button (click) = "addFormToggle()" type="button"> Add this </button>
-</form>
 
 
-<!-- List and Search View (uses pipe here) -->
-<ul>
-  <li *ngFor="let food of (foods| searchPipe: searchInput)" class="listBigBox">
-    <img [src]="food.image">
-    <div class="leftSection">
-        <h4>{{food.name}}</h4>
-    </div>
+  <!-- List and Search View (uses pipe here) -->
+  <ul>
+    <li *ngFor="let food of (foods| searchPipe: searchInput)" class="listBigBox">
+      <img [src]="food.image">
+      <div class="leftSection">
+          <h4>{{food.name}}</h4>
 
-  </li>
-</ul>
+          <label for="numberOfFood" (click)="addThis(food,numberOfFood.value)">➕</label>
+          <input #numberOfFood id="numberOfFood"  name="numberOfFood" value="1" >
+      </div>
+
+    </li>
+  </ul>
+
+</section>
+
+<section class="right">
+  <h2>Today's foods {{totalCal}} cal</h2>
+  <ul>
+    <li *ngFor="let food of foodsChosen">
+      {{food.name}} {{food.calories}} x {{food.quantity}}
+    </li>
+  </ul>
+</section>

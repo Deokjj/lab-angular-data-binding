@@ -13,6 +13,8 @@ export class FoodListComponent implements OnInit {
   nameInput: string ="";
   caloriesInput: number;
   imageInput: string="";
+  totalCal: number=0;
+  foodsChosen:Object[] =[];
 
   constructor() { }
 
@@ -30,7 +32,7 @@ export class FoodListComponent implements OnInit {
     console.log(this.addFormShown);
   }
 
-  newFoodSubmission(){
+  newFoodSubmission(myForm){
     const newFood ={
       name: this.nameInput,
       calories: this.caloriesInput,
@@ -38,6 +40,14 @@ export class FoodListComponent implements OnInit {
       quantity: 0
     }
     this.foods.push(newFood);
+    console.log(myForm);
     console.log(this.foods);
+  }
+
+  addThis(food:any, numberOfThis : number){
+    food.quantity = numberOfThis;
+    console.log(food);
+    this.foodsChosen.push(food);
+    this.totalCal += food.calories*food.quantity; 
   }
 }
